@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا | Azure - مطعم Azure الغردقة</title>
+    <meta name="description" content="تواصل مع مطعم Azure في الغردقة: حجز، استفسارات، واقتراحات">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .contact-page { padding-top: 120px; background: var(--primary); }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        .contact-info-card {
+            background: var(--primary-light);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+        .contact-info-card:hover {
+            border-color: var(--secondary);
+            transform: translateX(-10px);
+        }
+        .contact-info-card i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .contact-info-card h4 { margin-bottom: 0.5rem; }
+        .contact-info-card p { color: var(--text-light); }
+        
+        .contact-form {
+            background: var(--primary-light);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: var(--white);
+            font-family: 'Lato', sans-serif;
+            transition: var(--transition);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 20px rgba(255,215,0,0.1);
+        }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+        .form-group select option { background: var(--primary); color: var(--white); }
+        
+        .map-container {
+            margin-top: 4rem;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 400px;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .map-placeholder {
+            text-align: center;
+            color: var(--text-light);
+        }
+        .map-placeholder i {
+            font-size: 4rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .btn-submit {
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,215,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-anchor"></i></span>
+                <span class="logo-text">AZURE</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="menu.html">المنيو</a></li>
+                <li><a href="about.html">عنّا</a></li>
+                <li><a href="gallery.html">معرض الصور</a></li>
+                <li><a href="contact.html" class="active">تواصل معنا</a></li>
+            </ul>
+            <a href="reservation.html" class="btn-reserve">احجز طاولتك</a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="contact-page">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">نحن هنا من أجلك</span>
+                <h2 class="section-title">تواصل <span class="gold-text">معنا</span></h2>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>العنوان</h4>
+                        <p>شارع السقالة، بجوار فندق الشيراتون<br>الغردقة، البحر الأحمر، مصر</p>
+                    </div>
+                    <div class="contact-info-card">
+                        <i class="fas fa-phone"></i>
+                        <h4>الهاتف</h4>
+                        <p>+20 123 456 7890<br>+20 123 456 7891</p>
+                    </div>
+                    <div class="contact-info-card">
+                        <i class="fas fa-envelope"></i>
+                        <h4>البريد الإلكتروني</h4>
+                        <p>info@azure-hurghada.com<br>reservations@azure-hurghada.com</p>
+                    </div>
+                    <div class="contact-info-card">
+                        <i class="fas fa-clock"></i>
+                        <h4>ساعات العمل</h4>
+                        <p>يومياً من ١٢:٠٠ ظهراً إلى ١٢:٠٠ صباحاً<br>الجمعة: ١:٠٠ ظهراً إلى ١:٠٠ صباحاً</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--secondary);">أرسل لنا رسالة</h3>
+                    <form id="contactForm" onsubmit="return validateForm('contactForm')">
+                        <div class="form-group">
+                            <label for="name">الاسم الكامل</label>
+                            <input type="text" id="name" name="name" required placeholder="أدخل اسمك">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني</label>
+                            <input type="email" id="email" name="email" required placeholder="example@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+20 1XX XXX XXXX">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">الموضوع</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">اختر موضوع</option>
+                                <option value="reservation">استفسار عن حجز</option>
+                                <option value="feedback">تقييم/ملاحظة</option>
+                                <option value="complaint">شكوى</option>
+                                <option value="private">حجز مناسبة خاصة</option>
+                                <option value="other">أخرى</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">الرسالة</label>
+                            <textarea id="message" name="message" required placeholder="اكتب رسالتك هنا..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> إرسال الرسالة
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map"></i>
+                    <p>خريطة الموقع (Google Maps Embed)</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">استبدل هذا بكود Google Maps Embed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon"><i class="fas fa-anchor"></i></span>
+                        <span class="logo-text">AZURE</span>
+                    </a>
+                    <p>تجربة بحرية فاخرة في قلب الغردقة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="menu.html">المنيو</a></li>
+                        <li><a href="about.html">عنّا</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> شارع السقالة، الغردقة</li>
+                        <li><i class="fas fa-phone"></i> +20 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@azure-hurghada.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Azure Restaurant. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

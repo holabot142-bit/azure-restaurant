@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure | مطعم Azure الغردقة - تجربة بحرية فاخرة</title>
+    <meta name="description" content="مطعم Azure في الغردقة - أطباق بحرية فاخرة، إطلالة خلابة، وتجربة لا تُنسى">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">AZURE</div>
+            <div class="loader-line"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-anchor"></i></span>
+                <span class="logo-text">AZURE</span>
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li><a href="menu.html">المنيو</a></li>
+                <li><a href="about.html">عنّا</a></li>
+                <li><a href="gallery.html">معرض الصور</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+            
+            <a href="reservation.html" class="btn-reserve">احجز طاولتك</a>
+            
+            <button class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-bg">
+            <div class="hero-overlay"></div>
+            <div class="hero-particles" id="particles"></div>
+        </div>
+        
+        <div class="hero-content">
+            <p class="hero-subtitle fade-in-up">مطعم فاخر في قلب الغردقة</p>
+            <h1 class="hero-title fade-in-up delay-1">
+                تجربة بحرية<br>
+                <span class="gold-text">لا تُنسى</span>
+            </h1>
+            <p class="hero-desc fade-in-up delay-2">
+                أطباق بحرية طازجة، إطلالة خلابة على البحر الأحمر، 
+                وأجواء تُناسب كل لحظة مميزة
+            </p>
+            <div class="hero-buttons fade-in-up delay-3">
+                <a href="menu.html" class="btn-primary">استكشف المنيو</a>
+                <a href="reservation.html" class="btn-secondary">احجز الآن</a>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>اسحب للأسفل</span>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">لماذا نحن</span>
+                <h2 class="section-title">ما يميز <span class="gold-text">Azure</span></h2>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h3>أطباق بحرية طازجة</h3>
+                    <p>نختار يومياً من أفضل صيادي البحر الأحمر لنقدم لك أطيب الأسماك والمأكولات البحرية</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>شيف عالمي</h3>
+                    <p>شيفنا التنفيذي ماركو روسي يجلب خبرة 20 عاماً من أفضل مطاعم إيطاليا والبحر المتوسط</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>إطلالة بحرية</h3>
+                    <p>جلسات مفتوحة على البحر الأحمر مع إضاءة طبيعية خلال النهار وأجواء رومانسية ليلاً</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <h3>كوكتيلات مميزة</h3>
+                    <p>بارمانزنا يبتكرون كوكتيلات حصرية مستوحاة من نكهات البحر الأحمر الاستوائية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Dishes -->
+    <section class="featured-dishes">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">الأكثر طلباً</span>
+                <h2 class="section-title">أطباقنا <span class="gold-text">المميزة</span></h2>
+            </div>
+            
+            <div class="dishes-slider">
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <div class="dish-placeholder" style="background: linear-gradient(135deg, #1e3a5f 0%, #0a192f 100%);">
+                            <i class="fas fa-fish"></i>
+                        </div>
+                        <div class="dish-badge">الأكثر مبيعاً</div>
+                    </div>
+                    <div class="dish-info">
+                        <h3>سمك فيليه مشوي</h3>
+                        <p>سمك فيليه طازج مشوي على الفحم مع أعشاب البحر المتوسط</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">٣٨٠ ج.م</span>
+                            <button class="btn-add"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <div class="dish-placeholder" style="background: linear-gradient(135deg, #2d1b4e 0%, #0a192f 100%);">
+                            <i class="fas fa-shrimp"></i>
+                        </div>
+                    </div>
+                    <div class="dish-info">
+                        <h3>جمبري مشوي بالزبدة</h3>
+                        <p>جمبري طازج مشوي بالزبدة والثوم مع صلصة الليمون</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">٤٢٠ ج.م</span>
+                            <button class="btn-add"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <div class="dish-placeholder" style="background: linear-gradient(135deg, #1a472a 0%, #0a192f 100%);">
+                            <i class="fas fa-drumstick-bite"></i>
+                        </div>
+                        <div class="dish-badge">جديد</div>
+                    </div>
+                    <div class="dish-info">
+                        <h3>دجاج بالكريمة والفطر</h3>
+                        <p>صدر دجاج مشوي مع صلصة الكريمة والفطر البري</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">٢٩٠ ج.م</span>
+                            <button class="btn-add"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="menu.html" class="btn-outline">عرض المنيو كاملاً</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header light">
+                <span class="section-tag">آراء عملائنا</span>
+                <h2 class="section-title">ما يقوله <span class="gold-text">ضيوفنا</span></h2>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial-card active">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "تجربة لا تُنسى! الأكل طازج والإطلالة خلابة. الشيف ماركو شخصياً جاء يسألنا عن رأينا. 
+                        هنرجع تاني بالتأكيد!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>أحمد محمود</h4>
+                            <span>من القاهرة</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-bg">
+            <div class="cta-overlay"></div>
+        </div>
+        <div class="cta-content">
+            <h2>جاهز لتجربة <span class="gold-text">Azure</span>؟</h2>
+            <p>احجز طاولتك الآن واستمتع بخصم ١٥٪ على أول زيارة</p>
+            <a href="reservation.html" class="btn-primary btn-large">احجز طاولتك الآن</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon"><i class="fas fa-anchor"></i></span>
+                        <span class="logo-text">AZURE</span>
+                    </a>
+                    <p>تجربة بحرية فاخرة في قلب الغردقة. أطباق طازجة، إطلالة خلابة، وذكريات لا تُنسى.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="menu.html">المنيو</a></li>
+                        <li><a href="about.html">عنّا</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> شارع السقالة، الغردقة، مصر</li>
+                        <li><i class="fas fa-phone"></i> +20 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@azure-hurghada.com</li>
+                        <li><i class="fas fa-clock"></i> يومياً: ١٢ ظ - ١٢ ص</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2026 Azure Restaurant. جميع الحقوق محفوظة.</p>
+                <p>صنع بـ <i class="fas fa-heart"></i> في الغردقة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>

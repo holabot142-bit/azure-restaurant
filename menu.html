@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المنيو | Azure - مطعم Azure الغردقة</title>
+    <meta name="description" content="استكشف منيو Azure الفاخر: أطباق بحرية، مشويات، مقبلات، وحلويات">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .menu-page { padding-top: 120px; background: var(--primary); }
+        .menu-filters { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .filter-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--white);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Lato', sans-serif;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--secondary);
+            color: var(--primary);
+            border-color: var(--secondary);
+        }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .menu-item {
+            background: var(--primary-light);
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+        }
+        .menu-item:hover { transform: translateX(-10px); border-color: var(--secondary); }
+        .menu-item-img {
+            width: 100px; height: 100px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #1e3a5f, #0a192f);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; color: var(--secondary); flex-shrink: 0;
+        }
+        .menu-item-info { flex: 1; }
+        .menu-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .menu-item-header h3 { font-size: 1.2rem; }
+        .menu-item-price { color: var(--secondary); font-weight: 700; font-size: 1.1rem; }
+        .menu-item-desc { color: var(--text-light); font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .menu-item-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .tag {
+            background: rgba(255,215,0,0.1);
+            color: var(--secondary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+        }
+        .tag.spicy { background: rgba(231,76,60,0.1); color: #e74c3c; }
+        .tag.veg { background: rgba(46,204,113,0.1); color: #2ecc71; }
+        .menu-category-title {
+            font-size: 2rem; color: var(--secondary);
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(255,215,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-anchor"></i></span>
+                <span class="logo-text">AZURE</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="menu.html" class="active">المنيو</a></li>
+                <li><a href="about.html">عنّا</a></li>
+                <li><a href="gallery.html">معرض الصور</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+            <a href="reservation.html" class="btn-reserve">احجز طاولتك</a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="menu-page">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">قائمة الطعام</span>
+                <h2 class="section-title">منيو <span class="gold-text">Azure</span></h2>
+                <p style="color: var(--text-light); margin-top: 1rem;">أطباقنا تُحضر بأ freshest ingredients من البحر الأحمر</p>
+            </div>
+
+            <div class="menu-filters">
+                <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="seafood">أطباق بحرية</button>
+                <button class="filter-btn" data-filter="grill">مشويات</button>
+                <button class="filter-btn" data-filter="appetizer">مقبلات</button>
+                <button class="filter-btn" data-filter="dessert">حلويات</button>
+                <button class="filter-btn" data-filter="drinks">مشروبات</button>
+            </div>
+
+            <!-- مقبلات -->
+            <h3 class="menu-category-title" data-category="appetizer"><i class="fas fa-utensils"></i> المقبلات</h3>
+            <div class="menu-grid">
+                <div class="menu-item" data-category="appetizer">
+                    <div class="menu-item-img"><i class="fas fa-leaf"></i></div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>سلطة سيزر كلاسيك</h3>
+                            <span class="menu-item-price">٩٥ ج.م</span>
+                        </div>
+                        <p class="menu-item-desc">خس روماني طازج، جبنة بارميزان، خبز محمص، صلصة السيزر الخاصة</p>
+                        <div class="menu-item-tags"><span class="tag">كلاسيك</span></div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="appetizer">
+                    <div class="menu-item-img"><i class="fas fa-pepper-hot"></i></div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>حمص بالشاورما</h3>
+                            <span class="menu-item-price">٨٥ ج.م</span>
+                        </div>
+                        <p class="menu-item-desc">حمص كريمي مع قطع شاورما دجاج، زيت زيتون، بابريكا</p>
+                        <div class="menu-item-tags"><span class="tag">شرقي</span></div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="appetizer">
+                    <div class="menu-item-img"><i class="fas fa-cheese"></i></div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>كالاماري مقلي</h3>
+                            <span class="menu-item-price">١٢٠ ج.م</span>
+                        </div>
+                        <p class="menu-item-desc">حلقات كالاماري طازجة مقلية، صلصة تارتار، ليمون</p>
+                        <div class="menu-item-tags"><span class="tag">بحرية</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- أطباق بحرية -->
+            <h3 class="menu-category-title" data-category="seafood"><i class="fas fa-fish"></i> الأطباق البحرية</h3>
+            <div class="menu-grid">
+                <div class="menu-item" data-category="seafood">
+                    <div class="menu-item-img"><i class="fas fa-fish"></i></div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>سمك فيليه مشوي</h3>
+                            <span class="menu-item-price">٣٨٠ ج.م</span>
+                        </div>
+                        <p class="menu-item-desc">سمك فيليه طازج من البحر الأحمر، مشوي على الفحم، أعشاب البحر المتوسط</p>
+                        <div class="menu-item-tags"><span class="tag">الأكثر مبيعاً</span></div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="seafood">
+                    <div class="menu-item-img"><i class="fas fa-shrimp"></i></div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>جمبري مشوي بالزبدة</h3>
+                            <span class="menu-item-price">٤٢٠ ج.م</span>
+                        </div>
+                        <p class="menu-item-desc">جمبري طازج مشوي بالزبدة والثوم، صلصة الليمون البلدي</p>
+                        <div class="menu-item-tags"><span class="tag">مميز</span></div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="seafood">
+                    <div class="menu-item-img"><i class="fas fa-fish-fins"></i></div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>سي فود بلاتر</h3>
+                            <span class="menu-item-price">٦٥٠ ج.م</span>
+                        </div>
+                        <p class="menu-item-desc">تشكيلة من الجمبري، الكالاماري، بلح البحر، والأسماك مع الخضار المشوية</p>
+                        <div class="menu-item-tags"><span class="tag">للشخصين</span></div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="seafood">
+                    <div class="menu-item-img"><i class="fas fa-water"></i></div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>سمك السلطان إبراهيم</h3>
+                            <span class="menu-item-price">٣٥٠ ج.م</span>
+                        </div>
+                        <p class="menu-item-desc">سمك السلطان إبراهيم الطازج، مقلي أو مشوي، تبولة، طحينة</p>
+                        <div class="menu-item-tags"><span class="tag">مصري أصيل</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مشويات -->
+            <h3 class="menu-category-title" data-category="grill"><i class="fas fa-fire"></i> المشويات</h3>
+            <div class="menu-grid">
+                <div class="menu-item" data-category="grill">
+                    <div class="menu-item-img"><i class="fas fa-drumstick-bite"></i></div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>دجاج بالكريمة والفطر</h3>
+                            <span class="menu-item-price">٢٩٠ ج.م</span>
+                        </div>
+                        <p class="menu-item-desc">صدر دجاج مشوي مع صلصة الكريمة والفطر البري، أرز بالزعفران</p>
+                        <div class="menu-item-tags"><span class="tag">جديد</span></div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="grill">
+                    <div class="menu-item-img"><i class="fas fa-bacon"></i></div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>ريش ضاني مشوية</h3>
+                            <span class="menu-item-price">٤٥٠ ج.م</span>
+                        </div>
+                        <p class="menu-item-desc">ريش ضاني طازجة متبلة بالبهارات الشرقية، مشوية على الفحم</p>
+                        <div class="menu-item-tags"><span class="tag">بهارات</span></div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="grill">
+                    <div class="menu-item-img"><i class="fas fa-burger"></i></div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>برجر Azure الخاص</h3>
+                            <span class="menu-item-price">٢٥٠ ج.م</span>
+                        </div>
+                        <p class="menu-item-desc">لحم أنجوس، جبنة شيدر، بصل مكرمل، صلصة السر الخاصة، بطاطس ويدجز</p>
+                        <div class="menu-item-tags"><span class="tag">شيف Choice</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- حلويات -->
+            <h3 class="menu-category-title" data-category="dessert"><i class="fas fa-ice-cream"></i> الحلويات</h3>
+            <div class="menu-grid">
+                <div class="menu-item" data-category="dessert">
+                    <div class="menu-item-img"><i class="fas fa-cake-candles"></i></div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>تشيز كيك البحر</h3>
+                            <span class="menu-item-price">١٢٥ ج.م</span>
+                        </div>
+                        <p class="menu-item-desc">تشيز كيك كريمي بصلصة التوت البري، بسكويت الأوريو المطحون</p>
+                        <div class="menu-item-tags"><span class="tag">حصري</span></div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <div class="menu-item-img"><i class="fas fa-stroopwafel"></i></div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>كنافة نوتيلا</h3>
+                            <span class="menu-item-price">٩٥ ج.م</span>
+                        </div>
+                        <p class="menu-item-desc">كنافة محشية نوتيلا، فستق حلبي، قشطة، سيروب الورد</p>
+                        <div class="menu-item-tags"><span class="tag">شرقي</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مشروبات -->
+            <h3 class="menu-category-title" data-category="drinks"><i class="fas fa-wine-glass"></i> المشروبات</h3>
+            <div class="menu-grid">
+                <div class="menu-item" data-category="drinks">
+                    <div class="menu-item-img"><i class="fas fa-glass-water"></i></div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>موهيتو Azure</h3>
+                            <span class="menu-item-price">٩٠ ج.م</span>
+                        </div>
+                        <p class="menu-item-desc">نعناع طازج، ليمون، سكر، صودا، ولمسة من التوت البري</p>
+                        <div class="menu-item-tags"><span class="tag">كوكتيل</span></div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="drinks">
+                    <div class="menu-item-img"><i class="fas fa-mug-hot"></i></div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>قهوة تركية فاخرة</h3>
+                            <span class="menu-item-price">٤٥ ج.م</span>
+                        </div>
+                        <p class="menu-item-desc">قهوة تركية أصلية، محضرة على النار الهادئة، مع حلوى الترك</p>
+                        <div class="menu-item-tags"><span class="tag">ساخن</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon"><i class="fas fa-anchor"></i></span>
+                        <span class="logo-text">AZURE</span>
+                    </a>
+                    <p>تجربة بحرية فاخرة في قلب الغردقة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="menu.html">المنيو</a></li>
+                        <li><a href="about.html">عنّا</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> شارع السقالة، الغردقة</li>
+                        <li><i class="fas fa-phone"></i> +20 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@azure-hurghada.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Azure Restaurant. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+</html>

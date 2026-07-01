@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>احجز طاولتك | Azure - مطعم Azure الغردقة</title>
+    <meta name="description" content="احجز طاولتك في مطعم Azure الغردقة بكل سهولة">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .reservation-page { padding-top: 120px; background: var(--primary); min-height: 100vh; }
+        .reservation-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--primary-light);
+            border-radius: 30px;
+            padding: 3rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        .reservation-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%);
+        }
+        .reservation-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        .reservation-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .reservation-header p { color: var(--text-light); }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .form-group { margin-bottom: 1.5rem; position: relative; }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: var(--white);
+            font-family: 'Lato', sans-serif;
+            transition: var(--transition);
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 25px rgba(255,215,0,0.15);
+        }
+        .form-group input::placeholder { color: var(--text-light); }
+        .form-group select option { background: var(--primary); color: var(--white); }
+        
+        .form-group i {
+            position: absolute;
+            left: 1rem;
+            top: 2.7rem;
+            color: var(--text-light);
+        }
+        .form-group input[type="date"],
+        .form-group input[type="time"] {
+            color-scheme: dark;
+        }
+        
+        .guest-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+        .guest-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--secondary);
+            background: transparent;
+            color: var(--secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .guest-btn:hover { background: var(--secondary); color: var(--primary); }
+        .guest-count {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .seating-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .seating-option {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .seating-option:hover,
+        .seating-option.selected {
+            border-color: var(--secondary);
+            background: rgba(255,215,0,0.1);
+        }
+        .seating-option i {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            position: static;
+        }
+        .seating-option span {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        .btn-reserve-submit {
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .btn-reserve-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(255,215,0,0.3);
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+        .success-message i {
+            font-size: 5rem;
+            color: #2ecc71;
+            margin-bottom: 1.5rem;
+        }
+        .success-message h3 { font-size: 2rem; margin-bottom: 1rem; }
+        .success-message p { color: var(--text-light); margin-bottom: 2rem; }
+        
+        .offer-badge {
+            background: rgba(255,215,0,0.1);
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            padding: 1rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        .offer-badge i { margin-left: 0.5rem; }
+        
+        @media (max-width: 768px) {
+            .reservation-container { padding: 2rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .seating-options { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-anchor"></i></span>
+                <span class="logo-text">AZURE</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="menu.html">المنيو</a></li>
+                <li><a href="about.html">عنّا</a></li>
+                <li><a href="gallery.html">معرض الصور</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+            <a href="reservation.html" class="btn-reserve">احجز طاولتك</a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="reservation-page">
+        <div class="container">
+            <div class="reservation-container">
+                
+                <div id="reservationForm">
+                    <div class="reservation-header">
+                        <span class="section-tag">احجز الآن</span>
+                        <h2>احجز <span class="gold-text">طاولتك</span></h2>
+                        <p>احجز مكانك واستمتع بتجربة طعام لا تُنسى</p>
+                    </div>
+
+                    <div class="offer-badge">
+                        <i class="fas fa-tag"></i>
+                        خصم ١٥٪ على أول زيارة عند الحجز عبر الموقع
+                    </div>
+
+                    <form id="bookingForm" onsubmit="return handleReservation(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="resName">الاسم الكامل</label>
+                                <input type="text" id="resName" required placeholder="محمد أحمد">
+                            </div>
+                            <div class="form-group">
+                                <label for="resPhone">رقم الهاتف</label>
+                                <input type="tel" id="resPhone" required placeholder="+20 1XX XXX XXXX">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="resDate">التاريخ</label>
+                                <input type="date" id="resDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="resTime">الوقت</label>
+                                <input type="time" id="resTime" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>عدد الضيوف</label>
+                            <div class="guest-selector">
+                                <button type="button" class="guest-btn" onclick="changeGuests(-1)"><i class="fas fa-minus"></i></button>
+                                <span class="guest-count" id="guestCount">2</span>
+                                <button type="button" class="guest-btn" onclick="changeGuests(1)"><i class="fas fa-plus"></i></button>
+                            </div>
+                            <input type="hidden" id="guests" name="guests" value="2">
+                        </div>
+
+                        <div class="form-group">
+                            <label>نوع الجلسة</label>
+                            <div class="seating-options">
+                                <div class="seating-option selected" onclick="selectSeating(this, 'indoor')">
+                                    <i class="fas fa-couch"></i>
+                                    <span>داخلي</span>
+                                </div>
+                                <div class="seating-option" onclick="selectSeating(this, 'outdoor')">
+                                    <i class="fas fa-umbrella-beach"></i>
+                                    <span>خارجي (بحر)</span>
+                                </div>
+                                <div class="seating-option" onclick="selectSeating(this, 'private')">
+                                    <i class="fas fa-gem"></i>
+                                    <span>VIP خاص</span>
+                                </div>
+                            </div>
+                            <input type="hidden" id="seatingType" name="seating" value="indoor">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="resNotes">ملاحظات خاصة (اختياري)</label>
+                            <textarea id="resNotes" placeholder="مناسبة خاصة؟ طلبات غذائية؟ اكتبها هنا..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-reserve-submit">
+                            <i class="fas fa-calendar-check"></i> تأكيد الحجز
+                        </button>
+                    </form>
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>تم الحجز بنجاح!</h3>
+                    <p>سنقوم بالتواصل معك على الرقم المسجل لتأكيد الحجز.<br>نتطلع لرؤيتك في Azure!</p>
+                    <a href="index.html" class="btn-primary">العودة للرئيسية</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon"><i class="fas fa-anchor"></i></span>
+                        <span class="logo-text">AZURE</span>
+                    </a>
+                    <p>تجربة بحرية فاخرة في قلب الغردقة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="menu.html">المنيو</a></li>
+                        <li><a href="about.html">عنّا</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> شارع السقالة، الغردقة</li>
+                        <li><i class="fas fa-phone"></i> +20 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@azure-hurghada.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Azure Restaurant. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/reservation.js"></script>
+</body>
+</html>

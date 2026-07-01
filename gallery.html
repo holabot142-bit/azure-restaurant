@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض الصور | Azure - مطعم Azure الغردقة</title>
+    <meta name="description" content="شاهد أجمل لحظات Azure: الأطباق، الأجواء، والإطلالات">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .gallery-page { padding-top: 120px; background: var(--primary); }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #1e3a5f, #0a192f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .gallery-item.large { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10,25,47,0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-overlay h4 { color: var(--secondary); margin-bottom: 0.5rem; }
+        .gallery-overlay p { color: var(--text-light); font-size: 0.9rem; }
+        
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        .lightbox-nav:hover { background: var(--secondary); color: var(--primary); }
+        .lightbox-prev { left: -70px; }
+        .lightbox-next { right: -70px; }
+        
+        @media (max-width: 768px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-item.large { grid-column: span 2; grid-row: span 1; }
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-anchor"></i></span>
+                <span class="logo-text">AZURE</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="menu.html">المنيو</a></li>
+                <li><a href="about.html">عنّا</a></li>
+                <li><a href="gallery.html" class="active">معرض الصور</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+            <a href="reservation.html" class="btn-reserve">احجز طاولتك</a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="gallery-page">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">لحظات Azure</span>
+                <h2 class="section-title">معرض <span class="gold-text">الصور</span></h2>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item large" data-index="0">
+                    <i class="fas fa-utensils"></i>
+                    <div class="gallery-overlay">
+                        <h4>صالة الطعام الرئيسية</h4>
+                        <p>أجواء فاخرة مع إطلالة بحرية</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="1">
+                    <i class="fas fa-fish"></i>
+                    <div class="gallery-overlay">
+                        <h4>طبق السمك المشوي</h4>
+                        <p>تشكيلة من البحر الأحمر</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="2">
+                    <i class="fas fa-wine-glass"></i>
+                    <div class="gallery-overlay">
+                        <h4>البار</h4>
+                        <p>كوكتيلات حصرية</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="3">
+                    <i class="fas fa-water"></i>
+                    <div class="gallery-overlay">
+                        <h4>الإطلالة</h4>
+                        <p>غروب الشمس على البحر الأحمر</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="4">
+                    <i class="fas fa-birthday-cake"></i>
+                    <div class="gallery-overlay">
+                        <h4>مناسبات خاصة</h4>
+                        <p>نحتفل معك بأجمل لحظاتك</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="5">
+                    <i class="fas fa-fire"></i>
+                    <div class="gallery-overlay">
+                        <h4>المطبخ</h4>
+                        <p>الشيف ماركو في عمله</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="6">
+                    <i class="fas fa-couch"></i>
+                    <div class="gallery-overlay">
+                        <h4>الجلسات الخارجية</h4>
+                        <p>هواء البحر ونجوم الليل</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="7">
+                    <i class="fas fa-shrimp"></i>
+                    <div class="gallery-overlay">
+                        <h4>سي فود بلاتر</h4>
+                        <p>تشكيلة بحرية فاخرة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-right"></i></button>
+            <button class="lightbox-nav lightbox-next" id="lightboxNext"><i class="fas fa-chevron-left"></i></button>
+            <div style="width: 80vw; height: 80vh; background: linear-gradient(135deg, #1e3a5f, #0a192f); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 8rem; color: var(--secondary);" id="lightboxImage">
+                <i class="fas fa-image"></i>
+            </div>
+            <div style="text-align: center; margin-top: 1rem;" id="lightboxCaption">
+                <h4 style="color: var(--secondary);"></h4>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon"><i class="fas fa-anchor"></i></span>
+                        <span class="logo-text">AZURE</span>
+                    </a>
+                    <p>تجربة بحرية فاخرة في قلب الغردقة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="menu.html">المنيو</a></li>
+                        <li><a href="about.html">عنّا</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> شارع السقالة، الغردقة</li>
+                        <li><i class="fas fa-phone"></i> +20 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@azure-hurghada.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Azure Restaurant. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/gallery.js"></script>
+</body>
+</html>
